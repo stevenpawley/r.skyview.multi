@@ -1,0 +1,48 @@
+<h2>DESCRIPTION</h2>
+
+Module <em>r.skyview</em> computes Sky-View Factor, a relief visualization technique.
+The value of each cell is given by the portion of visible sky (from that cell)
+limited by the surrounding relief.
+The values range from 0 to 1. The lighter the value is, the more open the terrain is.
+
+
+<h2>NOTES</h2>
+Module <em><a href="r.horizon.html">r.horizon</a></em> is used to compute elevation angles.
+When computing these elevation angles, only the celestial hemisphere is considered.
+
+<h2>EXAMPLES</h2>
+
+We compute the sky-view factor map of the North Carolina sample
+dataset <tt>elevation</tt> map:
+
+```
+g.region raster=elevation
+r.skyview input=elevation output=elevation_skyview ndir=8
+```
+
+<center>
+<img src="elevation.jpg" alt="Sky-View Factor example">
+</center>
+
+<h2>SEE ALSO</h2>
+
+<em>
+<a href="r.horizon.html">r.horizon</a>,
+<a href="r.relief.html">r.relief</a>,
+<a href="r.shaded.pca.html">r.shaded.pca</a>,
+<a href="r.local.relief.html">r.local.relief</a>
+</em>
+
+
+<h2>REFERENCES</h2>
+<ul>
+    <li>Zaksek K, Ostir K, Kokalj Z. <em>Sky-View Factor as a Relief Visualization Technique.</em> Remote Sensing. 2011; 3(2):398-415.</li>
+</ul>
+
+<h2>AUTHORS</h2>
+
+Anna Petrasova, <a href="http://gis.ncsu.edu/osgeorel/">NCSU OSGeoREL</a>
+Modified by Steven Pawley to add multiprocessing 
+
+<p>
+<i>Last changed: $Date: 2015-10-15 10:24:20 -0600 (Thu, 15 Oct 2015) $</i>
