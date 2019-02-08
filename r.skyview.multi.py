@@ -163,11 +163,11 @@ def main():
         else:
             msgr.warning(_("The following maps will be overwritten: {names}"
                            ).format(names=','.join(old_maps)))
-            
+
     if not gcore.overwrite() and color_raster_tmp:
         check_map_name(color_raster_tmp)
-        
-    try:           
+
+    try:
         if notParallel is False:
             if options['maxdistance']:
                 maxdistance = float(options['maxdistance'])
@@ -178,16 +178,16 @@ def main():
                 "r.horizon", elevation=elev,
                 maxdistance=maxdistance, flags='d',
                 run_=False)
-        
+
             queue = ParallelModuleQueue(nprocs=len(horizon_intervals))
-            
+
             for d in horizon_intervals:
                 r_horizon_prc = deepcopy(r_horizon)
                 r_horizon_prc.inputs.direction = d
                 r_horizon_prc.outputs.output = TMP_NAME
                 queue.put(r_horizon_prc)
             queue.wait()
-            
+
         else:
             params = {}
             if options['maxdistance']:
