@@ -98,6 +98,7 @@
 #%  answer: 1
 #%end
 
+#%flag
 #% key: o
 #% label: Compute openness instead of skyview factor
 #% description: Openness considers zenith angles > 90 degrees
