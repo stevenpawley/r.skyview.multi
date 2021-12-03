@@ -258,7 +258,6 @@ def main():
                 **params
             )
 
-        msgr.message(_("Computing sky view factor ..."))
         new_maps = _get_horizon_maps()
 
         if flags["o"]:
@@ -275,6 +274,9 @@ def main():
             for horizon in new_maps[1:]:
                 expr += "+ sin( if({name} < 0, 0, {name}) ) ".format(name=horizon)
             expr += ") / {n}.".format(n=len(new_maps))
+        
+        grast.mapcalc(exp=expr)
+        gcore.run_command("r.colors", map=output, color="grey")
 
     except CalledModuleError:
         msgr.fatal(
