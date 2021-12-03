@@ -90,6 +90,14 @@
 #%  description: Set the basename for the intermediate maps
 #%end
 
+#%option
+#%  key: processes
+#%  type: integer
+#%  multiple: no
+#%  description: Number of processes to run in parallel
+#%  answer: 1
+#%end
+
 #% key: o
 #% label: Compute openness instead of skyview factor
 #% description: Openness considers zenith angles > 90 degrees
@@ -225,7 +233,7 @@ def main():
                 run_=False,
             )
 
-            queue = ParallelModuleQueue(nprocs=len(horizon_intervals))
+            queue = ParallelModuleQueue(nprocs=int(options["processes"]))
 
             for d in horizon_intervals:
                 r_horizon_prc = deepcopy(r_horizon)
